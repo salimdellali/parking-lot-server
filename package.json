@@ -1,15 +1,19 @@
 {
-  "name": "parkinglotserver-nasacademy-backend-challenge-salim-dellali",
-  "version": "1.0.0",
-  "description": "NASACADEMY parking lot server backend challenge 2021",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Salim Dellali",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^9.0.2",
-    "express": "^4.17.1"
-  }
+	"name": "parkinglotserver-nasacademy-backend-challenge-salim-dellali",
+	"version": "1.0.0",
+	"description": "NASACADEMY parking lot server backend challenge 2021",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js",
+		"server": "nodemon server.js"
+	},
+	"author": "Salim Dellali",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "^9.0.2",
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.7"
+	}
 }
