@@ -1,42 +1,64 @@
 const CustomCache = require('../helpers/CustomCache');
-const getCurrentUnixTimeStampInSeconds = require('../helpers/times');
+const {
+	getCurrentUnixTimeStampInSeconds,
+	diffTimeStampsInSeconds,
+} = require('../helpers/times');
 const convertIpIntoValidObjectKey = require('../helpers/utilities');
 
+const cache = new CustomCache();
+const WINDOW_SIZE_IN_SECONDS = 10;
+const MAX_WINDOW_REQUEST_COUNT = 10;
+
 const rateLimiter = (req, res, next) => {
-	const cache = new CustomCache();
+	const currentRequestTimeStampInSeconds = getCurrentUnixTimeStampInSeconds();
+	const currentRequestIp = convertIpIntoValidObjectKey(req.ip);
 
-	let record1Ip = convertIpIntoValidObjectKey('127.0.0.1');
-	let record1RequestInfo = [
-		{
-			requestTimeStamp: getCurrentUnixTimeStampInSeconds(),
-			requestCount: 1,
-		},
-	];
-	cache.setRecord({ ip: record1Ip, record: record1RequestInfo });
+	// fetch requestLog of current user using ip address, returns undefined when no requestLog is found
+	const currentRequestLog = cache.getRequestLog(currentRequestIp);
 
-	let record2Ip = convertIpIntoValidObjectKey('192.168.0.1');
-	let record2RequestInfo = [
-		{
-			requestTimeStamp: getCurrentUnixTimeStampInSeconds() + 10,
-			requestCount: 1,
-		},
-	];
-	cache.setRecord({ ip: record2Ip, record: record2RequestInfo });
-	// console.log(cache.getRecords());
-	// console.log(cache.getRecord(record2Ip));
-	// console.log(cache.getRecord('ip_5_5_5_5'));
+	// if no requestLog is found or window elapsed, create/update record and save to cache, and allow request
+	if (
+		typeof currentRequestLog === 'undefined' ||
+		diffTimeStampsInSeconds(
+			currentRequestTimeStampInSeconds,
+			currentRequestLog.firstRequestTimeStampInSeconds
+		) >= WINDOW_SIZE_IN_SECONDS
+	) {
+		const newRequestLog = {
+			firstRequestTimeStampInSeconds: currentRequestTimeStampInSeconds,
+			tokens: MAX_WINDOW_REQUEST_COUNT - 1,
+		};
+		cache.setRequestLog({ ip: currentRequestIp, requestLog: newRequestLog });
+		next();
+	}
 
-	let newRequestLog = {
-		requestTimeStamp: getCurrentUnixTimeStampInSeconds() + 20,
-		requestCount: 1,
-	};
+	// else if there are remaining tokens, decrement tokens by 1, and allow request
+	else if (currentRequestLog.tokens > 0) {
+		const upatedRequestLog = {
+			...currentRequestLog,
+			tokens: currentRequestLog.tokens - 1,
+		};
+		cache.setRequestLog({
+			ip: currentRequestIp,
+			requestLog: upatedRequestLog,
+		});
+		next();
+	}
 
-	console.log(cache.getRecord(record1Ip));
-	cache.addRequestLog({ ip: record1Ip, requestLog: newRequestLog });
-	console.log(cache.getRecord(record1Ip));
-
-	// console.log('Request Type:', req.method);
-	next();
+	// no tokens remaining within the window, deny requests
+	else {
+		const timeRemaining =
+			WINDOW_SIZE_IN_SECONDS -
+			diffTimeStampsInSeconds(
+				currentRequestTimeStampInSeconds,
+				currentRequestLog.firstRequestTimeStampInSeconds
+			);
+		res.statusCode = 429;
+		res.setHeader('Retry-After', timeRemaining);
+		res.send(
+			`You have exceeded the ${MAX_WINDOW_REQUEST_COUNT} requests in ${WINDOW_SIZE_IN_SECONDS}s limit. Retry after ${timeRemaining}s`
+		);
+	}
 };
 
 module.exports = rateLimiter;
