@@ -3,7 +3,7 @@ const {
 	getCurrentUnixTimeStampInSeconds,
 	diffTimeStampsInSeconds,
 } = require('../helpers/times');
-const convertIpIntoValidObjectKey = require('../helpers/utilities');
+const { convertIpIntoValidObjectKey } = require('../helpers/utilities');
 
 const cache = new CustomCache();
 const WINDOW_SIZE_IN_SECONDS = 10;
