@@ -35,6 +35,7 @@ class ParkingLot {
 		return null;
 	}
 
+	// getinfo
 	isSlotExisting(slotId) {
 		return Object.keys(this.parkingLot).includes(slotId);
 	}
@@ -79,6 +80,7 @@ class ParkingLot {
 		};
 	}
 
+	// getinfo
 	getSlotInformationByCar(car) {
 		const slotId = Object.keys(this.parkingLot).find(
 			(key) => this.parkingLot[key] === car

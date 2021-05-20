@@ -1,8 +1,8 @@
 /**
  * convert an ipv4 address into a "ip_#_#_#_#" format-like string
- * examples :
- * 	"127.0.0.1" 	-> "ip_127_0_0_1",
- * 	"192.168.0.1" 	-> "ip_192_168_0_1"
+ * @
+ * @example "127.0.0.1" 	-> "ip_127_0_0_1",
+ * @example	"192.168.0.1" 	-> "ip_192_168_0_1"
  * @param {string} ip
  * @returns {string}
  */
@@ -46,11 +46,11 @@ exports.isSlotIdValid = (slotId) => {
 // followed by a not empty and non negative number
 // example invalid car ids : "c" | "1" | "car" | "car_" | "car_-1" | "car_1a" | "car_aa"
 // example valid car ids : "car_0" | "car_00" | "car_00000" | "car_1" | "car_01" | "car_45" | "car_004500"
-exports.isCarIdValid = (car) => {
+exports.isCarIdValid = (carId) => {
 	// matching any word starting with a hyphen
 	const doStartWithHyphenRegEx = /^((-).*$).*/g;
-	const prefix = car.slice(0, 4);
-	const number = car.slice(4, car.length);
+	const prefix = carId.slice(0, 4);
+	const number = carId.slice(4, carId.length);
 
 	return (
 		prefix === 'car_' &&
@@ -73,3 +73,22 @@ exports.isCarIdValid = (car) => {
 // console.log('car_45 | ' + isCarIdValid('car_45'));
 // console.log('car_405 | ' + isCarIdValid('car_405'));
 // console.log('car_00405 | ' + isCarIdValid('car_00405'));
+
+exports.getPrefix = (id) => {
+	// matching any word starting with a hyphen
+	const doStartWithHyphenRegEx = /^((-).*$).*/g;
+	const prefixCar = id.slice(0, 4);
+	const prefixSlot = id.slice(0, 5);
+
+	if (prefixCar === 'car_') return 'car_';
+	if (prefixSlot === 'slot_') return 'slot_';
+	// throw new Error('Invalid ID prefix');
+	return 'invalid';
+};
+
+// console.log('c | ' + getPrefix('c'));
+// console.log('car_1 | ' + getPrefix('car_1'))
+// console.log('car_000000 | ' + getPrefix('car_00000'));
+// console.log('sl | ' + getPrefix('sl'));
+// console.log('slot_1 | ' + getPrefix('slot_1'))
+// console.log('slot_101 | ' + getPrefix('slot_101'))

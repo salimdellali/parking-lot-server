@@ -1,6 +1,6 @@
 /**
 	An example on how a cache can look like
-	CustomCache : {
+	@example CustomCache : {
 		ip_127_0_0_1 : {
 			firstRequestTimeStampInSeconds : 1621100425
 			tokens: 10

@@ -10,6 +10,7 @@ const app = express();
 
 app.use('/api/parkcar', require('./api/parkcar'));
 app.use('/api/unparkcar', require('./api/unparkcar'));
+app.use('/api/getcarslotinformation', require('./api/getcarslotinformation'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
