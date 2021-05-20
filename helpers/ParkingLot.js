@@ -19,11 +19,20 @@ class ParkingLot {
 		return this.parkingLot;
 	}
 
+	// parkcar
 	isParkingLotFull() {
 		for (const slotId in this.parkingLot) {
 			if (this.parkingLot[slotId] === null) return false;
 		}
 		return true;
+	}
+
+	// unparkcar
+	getParkingSlot(carId) {
+		for (const slotId in this.parkingLot) {
+			if (this.parkingLot[slotId] === carId) return slotId;
+		}
+		return null;
 	}
 
 	isSlotExisting(slotId) {
@@ -37,6 +46,7 @@ class ParkingLot {
 		return this.parkingLot[slotId] ? false : true;
 	}
 
+	// parkcar
 	getEmptySlot() {
 		for (const slotId in this.parkingLot) {
 			if (this.parkingLot[slotId] === null) return slotId;
@@ -44,6 +54,7 @@ class ParkingLot {
 		return null;
 	}
 
+	// parkcar | unparkcar
 	isCarIdExisting(carId) {
 		for (const slotId in this.parkingLot) {
 			if (this.parkingLot[slotId] === carId) return true;
@@ -51,10 +62,12 @@ class ParkingLot {
 		return false;
 	}
 
+	// parkcar
 	parkCar(slotId, car) {
 		this.parkingLot[slotId] = car;
 	}
 
+	// unparkcar
 	unparkCar(slotId) {
 		this.parkingLot[slotId] = null;
 	}

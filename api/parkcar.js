@@ -18,19 +18,18 @@ router.post('/:carid', rateLimiter, (req, res) => {
 		return res
 			.status(400)
 			.send(
-				"Car ID incorrect, please submit a car ID in a format like 'car_#####' where # is a digit"
+				"Car ID incorrect, please submit a corect car ID in a format like 'car_#####' where # is a digit"
 			);
 
 	if (parkingLot.isCarIdExisting(carId))
 		return res.status(400).send(`Car with ID: ${carId} is already parked`);
 
 	if (parkingLot.isParkingLotFull())
-		return res
-			.status(400)
-			.send(`Parking lot full, cannot park car with ID: ${carId}`);
+		return res.status(400).send(`Parking lot full`);
 
 	const emptySlot = parkingLot.getEmptySlot();
 	parkingLot.parkCar(emptySlot, carId);
+	console.log(parkingLot.getParkingLot());
 	return res
 		.status(200)
 		.send(`Car with ID: ${carId} is parked at the slot ID: ${emptySlot}`);
