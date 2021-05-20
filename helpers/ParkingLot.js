@@ -19,6 +19,13 @@ class ParkingLot {
 		return this.parkingLot;
 	}
 
+	isParkingLotFull() {
+		for (const slotId in this.parkingLot) {
+			if (this.parkingLot[slotId] === null) return false;
+		}
+		return true;
+	}
+
 	isSlotExisting(slotId) {
 		return Object.keys(this.parkingLot).includes(slotId);
 	}
@@ -35,6 +42,13 @@ class ParkingLot {
 			if (this.parkingLot[slotId] === null) return slotId;
 		}
 		return null;
+	}
+
+	isCarIdExisting(carId) {
+		for (const slotId in this.parkingLot) {
+			if (this.parkingLot[slotId] === carId) return true;
+		}
+		return false;
 	}
 
 	parkCar(slotId, car) {

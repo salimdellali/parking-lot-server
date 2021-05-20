@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const rateLimiter = require('../middlewares/rateLimiter');
 const ParkingLotSingleton = require('../models/ParkingLotSingleton');
+const { isCarIdValid } = require('../helpers/utilities');
 
 const parkingLot = ParkingLotSingleton.getInstance();
 
@@ -10,11 +11,29 @@ const parkingLot = ParkingLotSingleton.getInstance();
  * @desc	park a car
  * @access	Public
  */
-router.post('/', rateLimiter, (req, res) => {
-	res.send('you are on POST /parkcar');
-	parkingLot.parkCar('slot_1', 'car_00123');
-	parkingLot.parkCar('slot_2', 'car_00456');
-	console.log(parkingLot.getParkingLot());
+router.post('/:carid', rateLimiter, (req, res) => {
+	const carId = req.params.carid;
+
+	if (!isCarIdValid(carId))
+		return res
+			.status(400)
+			.send(
+				"Car ID incorrect, please submit a car ID in a format like 'car_#####' where # is a digit"
+			);
+
+	if (parkingLot.isCarIdExisting(carId))
+		return res.status(400).send(`Car with ID: ${carId} is already parked`);
+
+	if (parkingLot.isParkingLotFull())
+		return res
+			.status(400)
+			.send(`Parking lot full, cannot park car with ID: ${carId}`);
+
+	const emptySlot = parkingLot.getEmptySlot();
+	parkingLot.parkCar(emptySlot, carId);
+	return res
+		.status(200)
+		.send(`Car with ID: ${carId} is parked at the slot ID: ${emptySlot}`);
 });
 
 module.exports = router;
