@@ -28,7 +28,7 @@ router.get('/:id', rateLimiter, (req, res) => {
 	// if user is trying to get information based on carId
 	if (getPrefix(id) === 'car_') {
 		if (!parkingLot.isCarIdExisting(id))
-			return res.status(400).send(`Car with ID: ${id} is not parked`);
+			return res.status(200).send(`Car with ID: ${id} is not parked`);
 
 		const { slotId, carId } = parkingLot.getSlotInformationByCar(id);
 		return res
