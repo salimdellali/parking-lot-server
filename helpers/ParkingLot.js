@@ -118,7 +118,7 @@ class ParkingLot {
 	getSlotInformationBySlotId(slotId) {
 		return {
 			slotId,
-			car: this.parkingLot[slotId],
+			carId: this.parkingLot[slotId],
 		};
 	}
 
@@ -126,13 +126,13 @@ class ParkingLot {
 	 * @param {String} carId
 	 * @returns {ParkingSlotInformation} parking slot information
 	 */
-	getSlotInformationByCar(car) {
+	getSlotInformationByCar(carId) {
 		const slotId = Object.keys(this.parkingLot).find(
-			(key) => this.parkingLot[key] === car
+			(key) => this.parkingLot[key] === carId
 		);
 		return {
 			slotId,
-			car,
+			carId,
 		};
 	}
 }
