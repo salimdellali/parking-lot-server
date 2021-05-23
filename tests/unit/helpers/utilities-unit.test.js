@@ -1,9 +1,19 @@
 const {
+	isPositiveNoneNullNumber,
 	convertIpIntoValidObjectKey,
 	doStartWith0OrHyphen,
 	doStartWithHyphen,
 	getPrefix,
 } = require('../../../helpers/utilities');
+
+test('should be a positive and none null number', () => {
+	expect(isPositiveNoneNullNumber('0')).toBe(false);
+	expect(isPositiveNoneNullNumber('00')).toBe(false);
+	expect(isPositiveNoneNullNumber('-22')).toBe(false);
+	expect(isPositiveNoneNullNumber('1')).toBe(true);
+	expect(isPositiveNoneNullNumber('33')).toBe(true);
+	expect(isPositiveNoneNullNumber('111')).toBe(true);
+});
 
 test('should convert an IP address into a valid key object', () => {
 	expect(convertIpIntoValidObjectKey('127.0.0.1')).toBe('ip_127_0_0_1');

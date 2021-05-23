@@ -1,4 +1,14 @@
 /**
+ * returns if the input is a positive none null number
+ * @param {String} input
+ * @returns {Boolean} bollean value
+ */
+exports.isPositiveNoneNullNumber = (input) => {
+	const isPositiveNoneNullNumberRegExp = /^[1-9]\d*$/;
+	return isPositiveNoneNullNumberRegExp.test(input);
+};
+
+/**
  * convert an ipv4 address into a "ip_#_#_#_#" format-like string
  * where # is a digit
  * @example "127.0.0.1" 	-> "ip_127_0_0_1",
