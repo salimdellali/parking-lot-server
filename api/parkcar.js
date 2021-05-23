@@ -11,7 +11,7 @@ const parkingLot = ParkingLotSingleton.getInstance();
  * @desc	park a car
  * @access	Public
  */
-router.post('/:carid', rateLimiter, (req, res) => {
+router.put('/:carid', rateLimiter, (req, res) => {
 	const carId = req.params.carid;
 
 	if (!isCarIdValid(carId))
