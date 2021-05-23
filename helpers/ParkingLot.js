@@ -8,13 +8,14 @@ class ParkingLot {
 		this.parkingLot = parking;
 	}
 
-	// just a testing method
+	// for testing purposes
 	makeParkingLotFull() {
 		for (const slotId in this.parkingLot) {
 			this.parkingLot[slotId] = 'car_' + slotId.slice(5, slotId.length);
 		}
 	}
 
+	// for testing purposes
 	getParkingLot() {
 		return this.parkingLot;
 	}
@@ -38,13 +39,6 @@ class ParkingLot {
 	// getinfo
 	isSlotExisting(slotId) {
 		return Object.keys(this.parkingLot).includes(slotId);
-	}
-
-	isSlotEmpty(slotId) {
-		// if this.parkingLot[slotId] is null
-		// then its having a falsy value,
-		// so else exeutes, aka "true", aka the slot is indeed empty
-		return this.parkingLot[slotId] ? false : true;
 	}
 
 	// parkcar
@@ -73,6 +67,7 @@ class ParkingLot {
 		this.parkingLot[slotId] = null;
 	}
 
+	// getinfo
 	getSlotInformationBySlotId(slotId) {
 		return {
 			slotId,
