@@ -14,9 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const parkingLot = ParkingLotSingleton.getInstance();
-console.log(parkingLot.getParkingLot());
 
-// test if / route works
 app.get('/', (req, res) => {
 	const parkingLotCurrentState = parkingLot.getParkingLot();
 	// to pretty the output
