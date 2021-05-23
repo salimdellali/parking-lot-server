@@ -13,15 +13,18 @@ app.use('/api/getcarslotinformation', require('./api/getcarslotinformation'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const parkingLot = ParkingLotSingleton.getInstance();
+console.log(parkingLot.getParkingLot());
+
 // test if / route works
 app.get('/', (req, res) => {
-	res.send('we are on root');
+	const parkingLotCurrentState = parkingLot.getParkingLot();
+	// to pretty the output
+	res.header('Content-Type', 'application/json');
+	res.send(JSON.stringify(parkingLotCurrentState, null, 4));
 });
 
 app.listen(PORT, HOSTNAME, (err) => {
 	if (err) console.error(err);
 	console.log(`Server started on port ${PORT} ...`);
-
-	const parkingLot = ParkingLotSingleton.getInstance();
-	console.log(parkingLot.getParkingLot());
 });

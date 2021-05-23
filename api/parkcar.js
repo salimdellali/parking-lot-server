@@ -29,7 +29,6 @@ router.put('/:carid', rateLimiter, (req, res) => {
 
 	const emptySlot = parkingLot.getEmptySlot();
 	parkingLot.parkCar(emptySlot, carId);
-	console.log(parkingLot.getParkingLot());
 	return res
 		.status(200)
 		.send(`Car with ID: ${carId} is parked at the slot ID: ${emptySlot}`);
