@@ -1,4 +1,22 @@
+/**
+	An example on how a ParkingLot instance can look like,
+	for a given parking lot size (for instance 5), a ParkingLot instance can look like
+	@typedef {Object} ParkingLot
+	@property {String | null} parked car ID 
+	@example
+	{
+			slot_1: null,
+			slot_2: "car_00125",
+			slot_3: null,
+			slot_4: "car_23600",
+			slot_5: "car_16001"
+	}
+ */
 class ParkingLot {
+	/**
+	 * instanciante a new ParkingLot instance
+	 * @param {Number} parkingLotSize
+	 */
 	constructor(parkingLotSize) {
 		let parking = {};
 		for (let i = 1; i < parseInt(parkingLotSize) + 1; i++) {
@@ -16,11 +34,14 @@ class ParkingLot {
 	}
 
 	// for testing purposes
+	/**
+	 * get the current state of the parking lot
+	 * @returns {ParkingLot} parking lot
+	 */
 	getParkingLot() {
 		return this.parkingLot;
 	}
 
-	// parkcar
 	isParkingLotFull() {
 		for (const slotId in this.parkingLot) {
 			if (this.parkingLot[slotId] === null) return false;
@@ -28,7 +49,10 @@ class ParkingLot {
 		return true;
 	}
 
-	// unparkcar
+	/**
+	 * @param {String} carId
+	 * @returns {String | null} slot ID
+	 */
 	getParkingSlot(carId) {
 		for (const slotId in this.parkingLot) {
 			if (this.parkingLot[slotId] === carId) return slotId;
@@ -36,12 +60,17 @@ class ParkingLot {
 		return null;
 	}
 
-	// getinfo
+	/**
+	 * @param {String} slotId
+	 * @returns {Boolean} boolean value
+	 */
 	isSlotExisting(slotId) {
 		return Object.keys(this.parkingLot).includes(slotId);
 	}
 
-	// parkcar
+	/**
+	 * @returns {String | null} ID of an empty slot
+	 */
 	getEmptySlot() {
 		for (const slotId in this.parkingLot) {
 			if (this.parkingLot[slotId] === null) return slotId;
@@ -49,7 +78,10 @@ class ParkingLot {
 		return null;
 	}
 
-	// parkcar | unparkcar
+	/**
+	 * @param {String} carId
+	 * @returns {Boolean} if the car exists in the parking lot
+	 */
 	isCarIdExisting(carId) {
 		for (const slotId in this.parkingLot) {
 			if (this.parkingLot[slotId] === carId) return true;
@@ -57,17 +89,32 @@ class ParkingLot {
 		return false;
 	}
 
-	// parkcar
-	parkCar(slotId, car) {
-		this.parkingLot[slotId] = car;
+	/**
+	 * @param {String} slotId
+	 * @param {String} car
+	 */
+	parkCar(slotId, carId) {
+		this.parkingLot[slotId] = carId;
 	}
 
-	// unparkcar
+	/**
+	 *
+	 * @param {String} slotId
+	 */
 	unparkCar(slotId) {
 		this.parkingLot[slotId] = null;
 	}
 
-	// getinfo
+	/**
+	 * @typedef ParkingSlotInformation
+	 * @property {String} slot ID
+	 * @property {String} car ID
+	 */
+
+	/**
+	 * @param {String} slotId
+	 * @returns {ParkingSlotInformation} parking slot information
+	 */
 	getSlotInformationBySlotId(slotId) {
 		return {
 			slotId,
@@ -75,7 +122,10 @@ class ParkingLot {
 		};
 	}
 
-	// getinfo
+	/**
+	 * @param {String} carId
+	 * @returns {ParkingSlotInformation} parking slot information
+	 */
 	getSlotInformationByCar(car) {
 		const slotId = Object.keys(this.parkingLot).find(
 			(key) => this.parkingLot[key] === car

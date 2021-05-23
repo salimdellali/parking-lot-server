@@ -4,7 +4,7 @@
  * @example "127.0.0.1" 	-> "ip_127_0_0_1",
  * @example	"192.168.0.1" 	-> "ip_192_168_0_1"
  * @param {String} ip
- * @returns {String}
+ * @returns {String} converted ip address
  */
 exports.convertIpIntoValidObjectKey = (ip) => {
 	return 'ip_' + ip.replace(/\./g, '_');
@@ -15,7 +15,7 @@ exports.convertIpIntoValidObjectKey = (ip) => {
  * @example valid : "-1" | "0" | "-0" | "-a"
  * @example invalid: "a" | ""
  * @param {String} string
- * @returns {Boolean}
+ * @returns {Boolean} boolean value
  */
 const doStartWith0OrHyphen = (string) => {
 	const doStartWith0OrHyphenRegEx = /^((0|-).*$).*/g;
@@ -28,7 +28,7 @@ exports.doStartWith0OrHyphen = doStartWith0OrHyphen;
  * @example invalid slot IDs : "s" | "1" | "slot" | "slot_" | "slot_-1" | "slot_0" | "slot_1a" | "slot_aa"
  * @example valid slot IDs : "slot_1" | "slot_2" | "slot_3" | ... | "slot_50" | ...
  * @param {String} slotId
- * @returns {Boolean}
+ * @returns {Boolean} boolean value
  */
 exports.isSlotIdValid = (slotId) => {
 	const prefix = slotId.slice(0, 5);
@@ -47,7 +47,7 @@ exports.isSlotIdValid = (slotId) => {
  * @example valid : "-" | "-a" | "-0"
  * @example invalid: "a" | "0" | ""
  * @param {String} string
- * @returns {Boolean}
+ * @returns {Boolean} boolean value
  */
 const doStartWithHyphen = (string) => {
 	const doStartWithHyphenRegEx = /^((-).*$).*/g;
@@ -60,7 +60,7 @@ exports.doStartWithHyphen = doStartWithHyphen;
  * @example invalid car IDs: "c" | "1" | "car" | "car_" | "car_-1" | "car_1a" | "car_aa"
  * @example valid car IDs: "car_0" | "car_00" | "car_00000" | "car_1" | "car_01" | "car_45" | "car_004500" | ...
  * @param {String} carId
- * @returns {Boolean}
+ * @returns {Boolean} boolean value
  */
 exports.isCarIdValid = (carId) => {
 	const prefix = carId.slice(0, 4);
@@ -79,7 +79,7 @@ exports.isCarIdValid = (carId) => {
  * @example invalid: "c" | "s"
  * @example valid: "car_" | "car_1" | "car_00001" | "slot_" | "slot_1" | "slot_10"
  * @param {String} id
- * @returns {String} either "car_" | "slot_" | "invalid"
+ * @returns {String} either "car_" | "slot_" | "invalid" values
  */
 exports.getPrefix = (id) => {
 	const prefixCar = id.slice(0, 4);

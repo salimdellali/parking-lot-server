@@ -6,7 +6,7 @@ exports.getCurrentUnixTimeStampInSeconds = () => {
  * gives the difference between two timestamps in seconds
  * @param {Number} timeStampInSeconds1
  * @param {Number} timeStampInSeconds2
- * @returns {Number}
+ * @returns {Number} difference
  */
 exports.diffTimeStampsInSeconds = (
 	timeStampInSeconds1,

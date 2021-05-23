@@ -1,6 +1,9 @@
 /**
-	An example on how a cache can look like
-	@example CustomCache : {
+	An example on how a CustomCache instance can look like
+	@typedef {Object} CustomCache
+ 	@property {Record} one or many records
+	@example 
+	{
 		ip_127_0_0_1 : {
 			firstRequestTimeStampInSeconds : 1621100425
 			tokens: 9
@@ -10,6 +13,7 @@
 			tokens: 2
 		}
 	}
+	
  */
 class CustomCache {
 	/**
