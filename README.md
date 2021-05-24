@@ -19,7 +19,7 @@
 
 ## Server configuration
 
-- `PARKING_LOT_SIZE` variable in `.env` file : input a positive non null number to create a parking lot size of your choice
+- `PARKING_LOT_SIZE` variable in `.env` file : input a positive non null number to create a parking lot size of your choice, initialized to 4
 - `WINDOW_SIZE_IN_SECONDS` and `MAX_WINDOW_REQUEST_COUNT` constants in `middlewares/rateLimiter.js` : controls how many requests (`MAX_WINDOW_REQUEST_COUNT`) can be done within the time (in seconds) defined in `WINDOW_SIZE_IN_SECONDS`, initialized to 10 requests possible per 10 seconds
 
 ## Before using the server
@@ -36,15 +36,19 @@ make sure to follow these conventions:
 
 ## Using the server (Hitting the endpoints)
 
-the server has 4 main usable routes :
+GET and PUT HTTP methods are the only methods used in the project
+
+The server has 4 main usable routes :
 
 - GET `/` : returns in json format the actual state of the parking lot
 - PUT `/parkcar/:carId` : with a given valid car ID, park the car and return the appropriate message, or return the appropriate error message
-- PUT `/unparkcar/:carId` : with a given valid car ID, unpark the car and return the appropriate message, or return the appropriate error message
+- PUT `/unparkcar/:slotId` : with a given valid slot ID, unpark the car, free up space and return the appropriate message, or return the appropriate error message
 - GET `/getcarslotinformation/:id` : with a given valid car ID or valid slot ID, return the parking slot information, or return the appropriate error message
 
 ## Last note
 
 I had a lot of fun developing this project, I learned a bunch of stuff along the way, I know I couldn't submit this assignement withing the given 3 days (but I managed to submit the Frontend assignement :P), nonetheless I submitting my work
+
+I'm eager to know the results and to get a response back from you guys
 
 Built with <3 and excitement by Salim Dellali
