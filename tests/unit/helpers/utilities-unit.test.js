@@ -7,12 +7,12 @@ const {
 } = require('../../../helpers/utilities');
 
 test('should be a positive and none null number', () => {
-	expect(isPositiveNoneNullNumber('0')).toBe(false);
-	expect(isPositiveNoneNullNumber('00')).toBe(false);
-	expect(isPositiveNoneNullNumber('-22')).toBe(false);
-	expect(isPositiveNoneNullNumber('1')).toBe(true);
-	expect(isPositiveNoneNullNumber('33')).toBe(true);
-	expect(isPositiveNoneNullNumber('111')).toBe(true);
+	expect(isPositiveNoneNullNumber('0')).toBeFalsy();
+	expect(isPositiveNoneNullNumber('00')).toBeFalsy();
+	expect(isPositiveNoneNullNumber('-22')).toBeFalsy();
+	expect(isPositiveNoneNullNumber('1')).toBeTruthy();
+	expect(isPositiveNoneNullNumber('33')).toBeTruthy();
+	expect(isPositiveNoneNullNumber('111')).toBeTruthy();
 });
 
 test('should convert an IP address into a valid key object', () => {
@@ -22,21 +22,21 @@ test('should convert an IP address into a valid key object', () => {
 });
 
 test('should match any string that starts with a 0 or a hyphen (-)', () => {
-	expect(doStartWith0OrHyphen('a')).toBe(false);
-	expect(doStartWith0OrHyphen('')).toBe(false);
-	expect(doStartWith0OrHyphen('-1')).toBe(true);
-	expect(doStartWith0OrHyphen('0')).toBe(true);
-	expect(doStartWith0OrHyphen('-0')).toBe(true);
-	expect(doStartWith0OrHyphen('-a')).toBe(true);
+	expect(doStartWith0OrHyphen('a')).toBeFalsy();
+	expect(doStartWith0OrHyphen('')).toBeFalsy();
+	expect(doStartWith0OrHyphen('-1')).toBeTruthy();
+	expect(doStartWith0OrHyphen('0')).toBeTruthy();
+	expect(doStartWith0OrHyphen('-0')).toBeTruthy();
+	expect(doStartWith0OrHyphen('-a')).toBeTruthy();
 });
 
 test('should match any string startring with a hyphen (-)', () => {
-	expect(doStartWithHyphen('a')).toBe(false);
-	expect(doStartWithHyphen('0')).toBe(false);
-	expect(doStartWithHyphen('')).toBe(false);
-	expect(doStartWithHyphen('-')).toBe(true);
-	expect(doStartWithHyphen('-a')).toBe(true);
-	expect(doStartWithHyphen('-0')).toBe(true);
+	expect(doStartWithHyphen('a')).toBeFalsy();
+	expect(doStartWithHyphen('0')).toBeFalsy();
+	expect(doStartWithHyphen('')).toBeFalsy();
+	expect(doStartWithHyphen('-')).toBeTruthy();
+	expect(doStartWithHyphen('-a')).toBeTruthy();
+	expect(doStartWithHyphen('-0')).toBeTruthy();
 });
 
 test('should determine if a given ID is either a car ID, or a slot ID, or invalid ID', () => {
