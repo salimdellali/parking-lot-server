@@ -41,7 +41,7 @@ make sure to follow these conventions:
 
 ## Using the server (Hitting the endpoints)
 
-run `npm start` to launch the server, make sure to give the `parkingLotSize` variable in `.env` file a positive non null number
+run `npm start` to launch the server, make sure to give the `PARKING_LOT_SIZE` variable in `.env` file a positive non null number
 
 GET and PUT HTTP methods are the only methods used in the project
 
