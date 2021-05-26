@@ -2,6 +2,7 @@
 
 ## Scripts
 
+- `npm install` : install dependencies
 - `npm start` : start the server
 - `npm devserver` : start the server in dev mode (restart the server on each save)
 - `npm test` : run unit and integration tests
@@ -24,6 +25,8 @@
 
 ## Before using the server
 
+run `npm install` to install dependencies
+
 Since any database usage is allowed, the storage of information is volatile, so all information is stored only while the server is runing, the data is lost when restarting the server
 
 make sure to follow these conventions:
@@ -37,6 +40,8 @@ make sure to follow these conventions:
   - valid slot IDs examples : `slot_1` | `slot_2` | `slot_3` | ... | `slot_50` | ...
 
 ## Using the server (Hitting the endpoints)
+
+run `npm start` to launch the server, make sure to give the `parkingLotSize` variable in `.env` file a positive non null number
 
 GET and PUT HTTP methods are the only methods used in the project
 
