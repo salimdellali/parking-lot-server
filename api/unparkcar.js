@@ -7,7 +7,7 @@ const { isSlotIdValid } = require('../helpers/utilities');
 const parkingLot = ParkingLotSingleton.getInstance();
 
 /**
- * @route	POST api/unparkcar
+ * @route	PUT api/unparkcar
  * @desc	unpark a car
  * @access	Public
  */

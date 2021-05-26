@@ -1,5 +1,5 @@
 /**
- * returns if the input is a positive none null number
+ * returns if the input is a positive non null number
  * @param {String} input
  * @returns {Boolean} bollean value
  */
@@ -34,7 +34,7 @@ const doStartWith0OrHyphen = (string) => {
 exports.doStartWith0OrHyphen = doStartWith0OrHyphen;
 
 /**
- * A valid slot ID should always start with "slot_" followed by a not empty, non negative number, also should not start with a 0
+ * A valid slot ID should always start with "slot_" followed by a non empty, non negative number, also should not start with a 0
  * @example invalid slot IDs : "s" | "1" | "slot" | "slot_" | "slot_-1" | "slot_0" | "slot_1a" | "slot_aa"
  * @example valid slot IDs : "slot_1" | "slot_2" | "slot_3" | ... | "slot_50" | ...
  * @param {String} slotId
@@ -66,7 +66,7 @@ const doStartWithHyphen = (string) => {
 exports.doStartWithHyphen = doStartWithHyphen;
 
 /**
- * a valid car ID should always start with "car_" followed by a not empty and non negative number
+ * a valid car ID should always start with "car_" followed by a non empty and non negative number
  * @example invalid car IDs: "c" | "1" | "car" | "car_" | "car_-1" | "car_1a" | "car_aa"
  * @example valid car IDs: "car_0" | "car_00" | "car_00000" | "car_1" | "car_01" | "car_45" | "car_004500" | ...
  * @param {String} carId

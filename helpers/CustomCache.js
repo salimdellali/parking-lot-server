@@ -54,7 +54,7 @@ class CustomCache {
 
 	/**
 	 * get a request log based on ip
-	 * @param {String} ip formated ip address in a "ip_#_#_#_#" format-like
+	 * @param {String} formated ip address in a "ip_#_#_#_#" format-like
 	 * @returns {RequestLog} a request log
 	 */
 	getRequestLog(ip) {

@@ -6,7 +6,7 @@ const {
 	getPrefix,
 } = require('../../../helpers/utilities');
 
-test('should be a positive and none null number', () => {
+test('should be a positive and non null number', () => {
 	expect(isPositiveNoneNullNumber('0')).toBeFalsy();
 	expect(isPositiveNoneNullNumber('00')).toBeFalsy();
 	expect(isPositiveNoneNullNumber('-22')).toBeFalsy();

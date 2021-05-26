@@ -1,9 +1,9 @@
 const ParkingLot = require('../../../helpers/ParkingLot');
 
 describe('ParkingLot', () => {
-	test("should return parking lot error when parkingLotSize isn't a positive none null number", () => {
+	test("should return parking lot error when parkingLotSize isn't a positive and non null number", () => {
 		expect(() => new ParkingLot(0)).toThrowError(
-			'Invalid Parking lot size input, please provide a positive and none null number in the .env file and restart the app'
+			'Invalid Parking lot size input, please provide a positive and non null number in the .env file and restart the app'
 		);
 	});
 
@@ -39,7 +39,7 @@ describe('ParkingLot', () => {
 		expect(parkingLot.isParkingLotFull()).toBeTruthy();
 	});
 
-	test('should return parking slot based on car id when parkingLotSize is equal to 4', () => {
+	test('should return parking slot based on car ID when parkingLotSize is equal to 4', () => {
 		const parkingLot = new ParkingLot(4);
 		expect(parkingLot.getParkingSlot('car_1')).toBe(null);
 
@@ -68,7 +68,7 @@ describe('ParkingLot', () => {
 		expect(parkingLot.getEmptySlot()).toBe(null);
 	});
 
-	test('should return existence of car id when parkingLotSize is equal to 4', () => {
+	test('should return existence of car ID in the parking lot when parkingLotSize is equal to 4', () => {
 		const parkingLot = new ParkingLot(4);
 		expect(parkingLot.isCarIdExisting('car_001')).toBeFalsy();
 
@@ -76,14 +76,14 @@ describe('ParkingLot', () => {
 		expect(parkingLot.isCarIdExisting('car_001')).toBeTruthy();
 	});
 
-	test('should unpark correctly car when parkingLotSize is equal to 4', () => {
+	test('should unpark correctly a car when parkingLotSize is equal to 4', () => {
 		const parkingLot = new ParkingLot(4);
 		parkingLot.parkCar('slot_1', 'car_001');
 		parkingLot.unparkCar('slot_1');
 		expect(parkingLot.getParkingSlot('car_001')).toBe(null);
 	});
 
-	test('should get slot information  when parkingLotSize is equal to 4', () => {
+	test('should get slot information when parkingLotSize is equal to 4', () => {
 		const parkingLot = new ParkingLot(4);
 		expect(parkingLot.getSlotInformationBySlotId('slot_1')).toStrictEqual({
 			slotId: 'slot_1',

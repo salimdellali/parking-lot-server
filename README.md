@@ -4,7 +4,7 @@
 
 - `npm start` : start the server
 - `npm devserver` : start the server in dev mode (restart the server on each save)
-- `npm test` : run unit and integrations tests
+- `npm test` : run unit and integration tests
 
 ## Project structure
 
@@ -23,6 +23,8 @@
 - `WINDOW_SIZE_IN_SECONDS` and `MAX_WINDOW_REQUEST_COUNT` constants in `middlewares/rateLimiter.js` : controls how many requests (`MAX_WINDOW_REQUEST_COUNT`) can be done within the time (in seconds) defined in `WINDOW_SIZE_IN_SECONDS`, initialized to 10 requests possible per 10 seconds
 
 ## Before using the server
+
+Since any database usage is allowed, the storage of information is volatile, so all information is stored only while the server is runing, the data is lost when restarting the server
 
 make sure to follow these conventions:
 

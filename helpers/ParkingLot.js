@@ -1,6 +1,6 @@
 /**
 	An example on how a ParkingLot instance can look like,
-	for a given parking lot size (for instance 5), a ParkingLot instance can look like
+	for a given parking lot size (for instance 4), a ParkingLot instance can look like
 	@typedef {Object} ParkingLot
 	@property {String | null} parked car ID 
 	@example
@@ -8,20 +8,19 @@
 			slot_1: null,
 			slot_2: "car_00125",
 			slot_3: null,
-			slot_4: "car_23600",
-			slot_5: "car_16001"
+			slot_4: "car_236"
 	}
  */
 const { isPositiveNoneNullNumber } = require('../helpers/utilities');
 class ParkingLot {
 	/**
-	 * instanciante a new ParkingLot instance
+	 * instanciate a new ParkingLot instance
 	 * @param {Number} parkingLotSize
 	 */
 	constructor(parkingLotSize) {
 		if (!isPositiveNoneNullNumber(parkingLotSize))
 			throw new Error(
-				'Invalid Parking lot size input, please provide a positive and none null number in the .env file and restart the app'
+				'Invalid Parking lot size input, please provide a positive and non null number in the .env file and restart the app'
 			);
 		let parking = {};
 		for (let i = 1; i < parseInt(parkingLotSize) + 1; i++) {

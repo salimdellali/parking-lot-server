@@ -51,7 +51,7 @@ router.get('/:id', rateLimiter, (req, res) => {
 		return res.status(200).send(message);
 	}
 
-	// if user's input is invalid I don't know how lol xD just in case
+	// just in case if user's input is somehow invalid
 	if (getPrefix(id) === 'invalid') {
 		return res.status(400).send('input data invalid');
 	}
