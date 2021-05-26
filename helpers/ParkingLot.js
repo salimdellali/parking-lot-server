@@ -12,12 +12,17 @@
 			slot_5: "car_16001"
 	}
  */
+const { isPositiveNoneNullNumber } = require('../helpers/utilities');
 class ParkingLot {
 	/**
 	 * instanciante a new ParkingLot instance
 	 * @param {Number} parkingLotSize
 	 */
 	constructor(parkingLotSize) {
+		if (!isPositiveNoneNullNumber(parkingLotSize))
+			throw new Error(
+				'Invalid Parking lot size input, please provide a positive and none null number in the .env file and restart the app'
+			);
 		let parking = {};
 		for (let i = 1; i < parseInt(parkingLotSize) + 1; i++) {
 			let slot = 'slot_' + i;
