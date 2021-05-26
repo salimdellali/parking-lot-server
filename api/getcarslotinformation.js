@@ -30,7 +30,7 @@ router.get('/:id', rateLimiter, (req, res) => {
 		if (!parkingLot.isCarIdExisting(id))
 			return res.status(200).send(`Car with ID: ${id} is not parked`);
 
-		const { slotId, carId } = parkingLot.getSlotInformationByCar(id);
+		const { slotId, carId } = parkingLot.getSlotInformationByCarId(id);
 		return res
 			.status(200)
 			.send(`Car with ID: ${carId} parked at slot ID: ${slotId}`);

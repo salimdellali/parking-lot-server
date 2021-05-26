@@ -95,7 +95,7 @@ describe('ParkingLot', () => {
 			slotId: 'slot_1',
 			carId: 'car_001',
 		});
-		expect(parkingLot.getSlotInformationByCar('car_001')).toStrictEqual({
+		expect(parkingLot.getSlotInformationByCarId('car_001')).toStrictEqual({
 			slotId: 'slot_1',
 			carId: 'car_001',
 		});
