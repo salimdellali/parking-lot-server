@@ -1,5 +1,5 @@
 {
-	"name": "parkinglotserver-nasacademy-backend-challenge-salim-dellali",
+	"name": "parking-lot-server",
 	"version": "1.0.0",
 	"description": "NASACADEMY parking lot server backend challenge 2021",
 	"main": "server.js",
