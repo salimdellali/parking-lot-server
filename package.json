@@ -4,9 +4,10 @@
 	"description": "NASACADEMY parking lot server backend challenge 2021",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js",
-		"devserver": "nodemon server.js",
-		"test": "jest --watch"
+		"start": "node dist/server.js",
+		"devserver": "nodemon src/server.js",
+		"test": "jest --watch",
+		"build": "tsc -p ."
 	},
 	"author": "Salim Dellali",
 	"license": "ISC",
