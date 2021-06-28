@@ -12,7 +12,7 @@ const parkingLot = ParkingLotSingleton.getInstance();
  * @access	Public
  */
 router.put('/:slotid', rateLimiter, (req: Request, res: Response) => {
-	const slotId = req.params.slotid;
+	const slotId: string = req.params.slotid;
 
 	if (!isSlotIdValid(slotId))
 		return res
