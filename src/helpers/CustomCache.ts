@@ -1,7 +1,22 @@
+type RequestLog = {
+	firstRequestTimeStampInSeconds: number; // example: 1621100425
+	tokens: number; // example: 9
+};
+
+type RecordType = {
+	ip: string; // example: "ip_127_0_0_1"
+	requestLog: RequestLog;
+};
+
+// Indexable Type :
+// type CustomCacheType = {
+// 	[key: string]: RequestLog;
+// };
+// same as down bellow
+type CustomCacheType = Record<string, RequestLog>;
+
 /**
 	An example on how a CustomCache instance can look like
-	@typedef {Object} CustomCache
- 	@property {Record} one or many records
 	@example 
 	{
 		ip_127_0_0_1 : {
@@ -16,28 +31,7 @@
 	
  */
 class CustomCache {
-	/**
-	 * @typedef {Object} RequestLog
-	 * @property {Number} firstRequestTimeStampInSeconds
-	 * @property {Number} tokens - tokens left
-	 * @example {
-	 		firstRequestTimeStampInSeconds : 1621100425
-			tokens: 9
-	}
-	 */
-
-	/**
-	 * @typedef {Object} Record
-	 * @property {RequestLog}
-	 * @example { 
-		ip_127_0_0_1 : {
-			firstRequestTimeStampInSeconds : 1621100425
-			tokens: 9
-		}
-	}
-	 */
-
-	private cache: any;
+	private cache: CustomCacheType;
 
 	constructor() {
 		this.cache = {};
@@ -48,26 +42,22 @@ class CustomCache {
 	 * where key is an ip address formated in a "ip_#_#_#_#" format-like,
 	 * and value is a RequestLog Object.
 	 * Each pair is called a record.
-	 * @returns {Record} an object containing one or many records
 	 */
-	getRecords() {
+	getRecords(): CustomCacheType {
 		return this.cache;
 	}
 
 	/**
 	 * get a request log based on ip
-	 * @param {String} formated ip address in a "ip_#_#_#_#" format-like
-	 * @returns {RequestLog} a request log
 	 */
-	getRequestLog(ip: string) {
+	getRequestLog(ip: string): RequestLog {
 		return this.cache[ip];
 	}
 
 	/**
 	 * set new or update existing record's request log, based on ip
-	 * @param {Record} record
 	 */
-	setRequestLog({ ip, requestLog }: any) {
+	setRequestLog({ ip, requestLog }: RecordType): void {
 		this.cache[ip] = requestLog;
 	}
 }
