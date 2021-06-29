@@ -5,7 +5,7 @@ type Parking = {
 	[key: string]: ParkingSlotType;
 };
 
-const { isPositiveNoneNullNumber } = require('./utilities');
+import { isPositiveNoneNullNumber } from './utilities';
 
 /**
 	An example on how a ParkingLot instance can look like,
@@ -18,7 +18,7 @@ const { isPositiveNoneNullNumber } = require('./utilities');
 			slot_4: "car_236"
 	}
  */
-class ParkingLot {
+export class ParkingLot {
 	private parkingLot: Parking;
 
 	constructor(parkingLotSize: string) {
@@ -111,5 +111,3 @@ class ParkingLot {
 		};
 	}
 }
-
-module.exports = ParkingLot;

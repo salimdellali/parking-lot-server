@@ -1,16 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
-const CustomCache = require('../helpers/CustomCache');
-const {
+import { CustomCache } from '../helpers/CustomCache';
+import {
 	getCurrentUnixTimeStampInSeconds,
 	diffTimeStampsInSeconds,
-} = require('../helpers/times');
-const { convertIpIntoValidObjectKey } = require('../helpers/utilities');
+} from '../helpers/times';
+import { convertIpIntoValidObjectKey } from '../helpers/utilities';
 
 const cache = new CustomCache();
 const WINDOW_SIZE_IN_SECONDS = 10;
 const MAX_WINDOW_REQUEST_COUNT = 10;
 
-const rateLimiter = (req: Request, res: Response, next: NextFunction) => {
+export const rateLimiter = (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	const currentRequestTimeStampInSeconds = getCurrentUnixTimeStampInSeconds();
 	const currentRequestIp = convertIpIntoValidObjectKey(req.ip);
 
@@ -61,5 +65,3 @@ const rateLimiter = (req: Request, res: Response, next: NextFunction) => {
 		);
 	}
 };
-
-module.exports = rateLimiter;

@@ -1,10 +1,10 @@
-const ParkingLotS = require('../helpers/ParkingLot');
+import { ParkingLot } from '../helpers/ParkingLot';
 // Singleton Design Pattern
-let ParkingLotSingleton = (function () {
+export let ParkingLotSingleton = (function () {
 	let instance: any;
 
 	function createInstance() {
-		let object = new ParkingLotS(process.env.PARKING_LOT_SIZE!);
+		let object = new ParkingLot(process.env.PARKING_LOT_SIZE!);
 		return object;
 	}
 
@@ -18,5 +18,3 @@ let ParkingLotSingleton = (function () {
 		},
 	};
 })();
-
-module.exports = ParkingLotSingleton;

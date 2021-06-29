@@ -30,7 +30,7 @@ type CustomCacheType = Record<string, RequestLog>;
 	}
 	
  */
-class CustomCache {
+export class CustomCache {
 	private cache: CustomCacheType;
 
 	constructor() {
@@ -61,5 +61,3 @@ class CustomCache {
 		this.cache[ip] = requestLog;
 	}
 }
-
-module.exports = CustomCache;
