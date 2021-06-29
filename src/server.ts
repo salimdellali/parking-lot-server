@@ -1,7 +1,12 @@
+require('dotenv/config');
+
 import express, { Application, Request, Response, NextFunction } from 'express';
 import { ParkingLotSingleton } from './models/ParkingLotSingleton';
 import { rateLimiter } from './middlewares/rateLimiter';
-require('dotenv/config');
+
+import parkCarRouter from './api/parkcar';
+import unparkCarRouter from './api/unparkcar';
+import getCarSlotInformationRouter from './api/getcarslotinformation';
 
 const PORT = +process.env.PORT! || 5000;
 const HOSTNAME = '0.0.0.0'; // to get "127.0.0.1" string rather than "::1" when calling req.ip
@@ -19,11 +24,9 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 	res.header('Content-Type', 'application/json');
 	res.send(JSON.stringify(parkingLotCurrentState, null, 4));
 });
-import parkCarRouter from './api/parkcar';
+
 app.use('/api/parkcar', parkCarRouter);
-import unparkCarRouter from './api/unparkcar';
 app.use('/api/unparkcar', unparkCarRouter);
-import getCarSlotInformationRouter from './api/getcarslotinformation';
 app.use('/api/getcarslotinformation', getCarSlotInformationRouter);
 
 app.listen(PORT, HOSTNAME, () => {

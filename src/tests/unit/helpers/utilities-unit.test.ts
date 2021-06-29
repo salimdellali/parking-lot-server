@@ -1,10 +1,10 @@
-const {
+import {
 	isPositiveNoneNullNumber,
 	convertIpIntoValidObjectKey,
 	doStartWith0OrHyphen,
 	doStartWithHyphen,
 	getPrefix,
-} = require('../../../helpers/utilities');
+} from '../../../helpers/utilities';
 
 test('should be a positive and non null number', () => {
 	expect(isPositiveNoneNullNumber('0')).toBeFalsy();

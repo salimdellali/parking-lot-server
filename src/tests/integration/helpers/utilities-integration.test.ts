@@ -1,4 +1,4 @@
-const { isSlotIdValid, isCarIdValid } = require('../../../helpers/utilities');
+import { isSlotIdValid, isCarIdValid } from '../../../helpers/utilities';
 
 test('should check if a slot ID is valid', () => {
 	expect(isSlotIdValid('s')).toBeFalsy();

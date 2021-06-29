@@ -1,4 +1,4 @@
-const CustomCache = require('../../../helpers/CustomCache');
+import { CustomCache } from '../../../helpers/CustomCache';
 
 describe('CustomCache', () => {
 	test('should return records', () => {
