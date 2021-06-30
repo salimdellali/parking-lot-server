@@ -1,22 +1,45 @@
 # NASACADEMY Backend Challenge - Parking Lot Management
 
+## Quick start of the application usage
+
+[Using the server (Hitting the endpoints)](#using-the-server-hitting-the-endpoints)
+
 ## Table of contents
 
+- [Why this project ?](#why-this-project)
+- [Project description](#project-description)
 - [Scripts](#server-configuration)
 - [Project structure](#project-structure)
 - [Server configuration](#server-configuration)
 - [Before using the server](#before-using-the-server)
-- [Using the server Hitting the endpoints](#using-the-server-hitting-the-endpoints)
+- [Using the server (Hitting the endpoints)](#using-the-server-hitting-the-endpoints)
 - [Last Note](#last-note)
 
-### Scripts
+## Why this project ?
+
+I built this project as part of an assignement to apply for a Fullstack position.
+
+## Project description
+
+- The project is to create a simple server that manages a parking lot that is rate-limited by the IP Address.
+- The only allowed packages are `express` with Node.js and `dotenv`, apart from this it's forbidden to use any other libraries or databases.
+- 3 main endpoints should be created which are :
+  - Park a Car: The Endpoint will be given the car number as input and outputs the slot where it is parked. If the parking lot is full, the appropriate error message is returned.
+  - Unpark the Car: This endpoint takes the slot number from which the car is to be removed from and frees that slot up to be used by other cars.
+  - Get the Car/Slot Information: This endpoint can take either the slot number or car number and return both the car number and slot number
+    for the input.
+- Apart from this, the server will rate-limit the number of requests coming in. So, if a user makes more than 10 requests in 10 seconds, we return the appropriate error message.
+- Important Note: Implement OWN rate limiter without using any third party library.
+
+## Scripts
 
 - `npm install` : install dependencies
-- `npm start` : start the server
+- `npm start` : compile the project into `/dist` folder and start the server
 - `npm run devserver` : start the server in dev mode (restart the server on each save)
 - `npm run test` : run unit and integration tests
+- `npm run build` : compile the Typescript in `/src` into Javascript in `/dist`
 
-### Project structure
+## Project structure
 
 - `src/` : Typescript source folder
   - `api/` : folder containing the RESTful API routes
@@ -25,17 +48,17 @@
   - `models/` : folder containing Parking Lot Singleton Model, ensures that the same instance of the the Parking Lot class is used accross the project
   - `tests/` : folder containing unit and integration tests, used to test the code in other folders
   - `server.js` : file that initialize the server and glues everything together
+- `.env` : file holding the parking lot size variable, has to be positive and non null number
 - `jest.config.js` : jest config file for Typescript support
 - `tsconfig.json` : Typescript config file
-- `.env` : file holding the parking lot size variable, has to be positive and non null number
 - `package.json`: file that remembers all packages that the server depends on and their versions
 
-### Server configuration
+## Server configuration
 
 - `PARKING_LOT_SIZE` variable in `.env` file : input a positive non null number to create a parking lot size of your choice, initialized to 4
 - `WINDOW_SIZE_IN_SECONDS` and `MAX_WINDOW_REQUEST_COUNT` constants in `middlewares/rateLimiter.js` : controls how many requests (`MAX_WINDOW_REQUEST_COUNT`) can be done within the time (in seconds) defined in `WINDOW_SIZE_IN_SECONDS`, initialized to 10 requests possible per 10 seconds
 
-### Before using the server
+## Before using the server
 
 run `npm install` to install dependencies
 
@@ -51,7 +74,7 @@ make sure to follow these conventions:
   - invalid slot IDs examples : `s` | `1` | `slot` | `slot_` | `slot_-1` | `slot_0` | `slot_1a` | `slot_aa`
   - valid slot IDs examples : `slot_1` | `slot_2` | `slot_3` | ... | `slot_50` | ...
 
-### Using the server Hitting the endpoints
+## Using the server (Hitting the endpoints)
 
 run `npm start` to launch the server, make sure to give the `PARKING_LOT_SIZE` variable in `.env` file a positive non null number
 
@@ -64,6 +87,6 @@ The server has 4 main usable routes :
 - PUT `/unparkcar/:slotId` : with a given valid slot ID, unpark the car, free up space and return the appropriate message, or return the appropriate error message
 - GET `/getcarslotinformation/:id` : with a given valid car ID or valid slot ID, return the parking slot information, or return the appropriate error message
 
-### Last note
+## Last note
 
 Built with <3 and excitement by Salim Dellali

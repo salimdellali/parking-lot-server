@@ -1,0 +1,1 @@
+web: tsc -p . && node dist/server.js

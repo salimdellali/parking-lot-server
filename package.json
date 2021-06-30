@@ -1,10 +1,10 @@
 {
 	"name": "parking-lot-server",
 	"version": "1.0.0",
-	"description": "NASACADEMY parking lot server backend challenge 2021",
+	"description": "parking lot server backend challenge 2021",
 	"main": "server.js",
 	"scripts": {
-		"start": "node dist/server.js",
+		"start": "tsc -p . && node dist/server.js",
 		"devserver": "nodemon src/server.ts",
 		"test": "jest --watch --config jest.config.js",
 		"build": "tsc -p ."

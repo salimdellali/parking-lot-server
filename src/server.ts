@@ -21,9 +21,19 @@ const parkingLot = ParkingLotSingleton.getInstance();
 app.use(rateLimiter);
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
 	const parkingLotCurrentState = parkingLot.getParkingLot();
+	const text = `\n\nPlease use an API client (eg: Postman)
+
+Possible routes:
+- GET / : returns in json format the actual state of the parking lot
+- PUT /parkcar/:carId : with a given valid car ID, park the car and return the appropriate message, or return the appropriate error message
+- PUT /unparkcar/:slotId : with a given valid slot ID, unpark the car, free up space and return the appropriate message, or return the appropriate error message
+- GET /getcarslotinformation/:id : with a given valid car ID or valid slot ID, return the parking slot information, or return the appropriate error message
+
+For more information, refere to the project's README.md`;
+
 	// to pretty the output
 	res.header('Content-Type', 'application/json');
-	res.send(JSON.stringify(parkingLotCurrentState, null, 4));
+	res.send(JSON.stringify(parkingLotCurrentState, null, 4) + text);
 });
 
 app.use('/api/parkcar', parkCarRouter);
