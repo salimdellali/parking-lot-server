@@ -1,6 +1,7 @@
 require('dotenv/config');
 
 import express, { Application, Request, Response, NextFunction } from 'express';
+import path from 'path';
 import { ParkingLotSingleton } from './models/ParkingLotSingleton';
 import { rateLimiter } from './middlewares/rateLimiter';
 

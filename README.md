@@ -1,33 +1,45 @@
 # NASACADEMY Backend Challenge - Parking Lot Management
 
-## Scripts
+## Table of contents
+
+- [Scripts](#server-configuration)
+- [Project structure](#project-structure)
+- [Server configuration](#server-configuration)
+- [Before using the server](#before-using-the-server)
+- [Using the server Hitting the endpoints](#using-the-server-hitting-the-endpoints)
+- [Last Note](#last-note)
+
+### Scripts
 
 - `npm install` : install dependencies
 - `npm start` : start the server
-- `npm devserver` : start the server in dev mode (restart the server on each save)
-- `npm test` : run unit and integration tests
+- `npm run devserver` : start the server in dev mode (restart the server on each save)
+- `npm run test` : run unit and integration tests
 
-## Project structure
+### Project structure
 
-- `api/` : folder containing the RESTful API routes
-- `helpers/` : folder containing code and functionality to be shared by different parts of the project
-- `middlewares/` : folder containing Express middlewares which process the incoming requests before handling them down to the routes, currently holds the Rate Limiter middleware
-- `models/`: folder containing Parking Lot Singleton Model, ensures that the same instance of the the Parking Lot class is used accross the project
-- `tests/`: folder containing unit and integration tests, used to test the code in other folders
+- `src/` : Typescript source folder
+  - `api/` : folder containing the RESTful API routes
+  - `helpers/` : folder containing code and functionality to be shared by different parts of the project
+  - `middlewares/` : folder containing Express middlewares which process the incoming requests before handling them down to the routes, currently holds the Rate Limiter middleware
+  - `models/` : folder containing Parking Lot Singleton Model, ensures that the same instance of the the Parking Lot class is used accross the project
+  - `tests/` : folder containing unit and integration tests, used to test the code in other folders
+  - `server.js` : file that initialize the server and glues everything together
+- `jest.config.js` : jest config file for Typescript support
+- `tsconfig.json` : Typescript config file
 - `.env` : file holding the parking lot size variable, has to be positive and non null number
-- `server.js`: file that initialize the server and glues everything together
 - `package.json`: file that remembers all packages that the server depends on and their versions
 
-## Server configuration
+### Server configuration
 
 - `PARKING_LOT_SIZE` variable in `.env` file : input a positive non null number to create a parking lot size of your choice, initialized to 4
 - `WINDOW_SIZE_IN_SECONDS` and `MAX_WINDOW_REQUEST_COUNT` constants in `middlewares/rateLimiter.js` : controls how many requests (`MAX_WINDOW_REQUEST_COUNT`) can be done within the time (in seconds) defined in `WINDOW_SIZE_IN_SECONDS`, initialized to 10 requests possible per 10 seconds
 
-## Before using the server
+### Before using the server
 
 run `npm install` to install dependencies
 
-Since any database usage is allowed, the storage of information is volatile, so all information is stored only while the server is runing, the data is lost when restarting the server
+Since any database usage isn't allowed, the storage of information is volatile, so all information is stored only while the server is running, the data is lost when restarting the server
 
 make sure to follow these conventions:
 
@@ -39,7 +51,7 @@ make sure to follow these conventions:
   - invalid slot IDs examples : `s` | `1` | `slot` | `slot_` | `slot_-1` | `slot_0` | `slot_1a` | `slot_aa`
   - valid slot IDs examples : `slot_1` | `slot_2` | `slot_3` | ... | `slot_50` | ...
 
-## Using the server (Hitting the endpoints)
+### Using the server Hitting the endpoints
 
 run `npm start` to launch the server, make sure to give the `PARKING_LOT_SIZE` variable in `.env` file a positive non null number
 
@@ -52,10 +64,6 @@ The server has 4 main usable routes :
 - PUT `/unparkcar/:slotId` : with a given valid slot ID, unpark the car, free up space and return the appropriate message, or return the appropriate error message
 - GET `/getcarslotinformation/:id` : with a given valid car ID or valid slot ID, return the parking slot information, or return the appropriate error message
 
-## Last note
-
-I had a lot of fun developing this project, I learned a bunch of stuff along the way, I know I couldn't submit this assignement withing the given 3 days (but I managed to submit the Frontend assignement :P), nonetheless I submitting my work
-
-I'm eager to know the results and to get a response back from you guys
+### Last note
 
 Built with <3 and excitement by Salim Dellali
