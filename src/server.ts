@@ -25,9 +25,9 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 
 Possible routes:
 - GET / : returns in json format the actual state of the parking lot
-- PUT /parkcar/:carId : with a given valid car ID, park the car and return the appropriate message, or return the appropriate error message
-- PUT /unparkcar/:slotId : with a given valid slot ID, unpark the car, free up space and return the appropriate message, or return the appropriate error message
-- GET /getcarslotinformation/:id : with a given valid car ID or valid slot ID, return the parking slot information, or return the appropriate error message
+- PUT /api/parkcar/:carId : with a given valid car ID, park the car and return the appropriate message, or return the appropriate error message
+- PUT /api/unparkcar/:slotId : with a given valid slot ID, unpark the car, free up space and return the appropriate message, or return the appropriate error message
+- GET /api/getcarslotinformation/:id : with a given valid car ID or valid slot ID, return the parking slot information, or return the appropriate error message
 
 For more information, refere to the project's README.md`;
 
