@@ -8,7 +8,7 @@
 
 - [Why this project ?](#why-this-project)
 - [Project description](#project-description)
-- [Scripts](#server-configuration)
+- [Scripts](#scripts)
 - [Project structure](#project-structure)
 - [Server configuration](#server-configuration)
 - [Before using the server](#before-using-the-server)
@@ -34,10 +34,10 @@ I built this project as part of an assignement to apply for a Fullstack position
 ## Scripts
 
 - `npm install` : install dependencies
-- `npm start` : compile the project into `/dist` folder and start the server
+- `npm run postinstall` : after installing the dependencies, compile the project Typescript `src/` folder to Javascript `dist/` folder
+- `npm start` : start the server
 - `npm run devserver` : start the server in dev mode (restart the server on each save)
 - `npm run test` : run unit and integration tests
-- `npm run build` : compile the Typescript in `/src` into Javascript in `/dist`
 
 ## Project structure
 

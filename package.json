@@ -4,10 +4,10 @@
 	"description": "parking lot server backend challenge 2021",
 	"main": "server.js",
 	"scripts": {
-		"start": "tsc -p . && node dist/server.js",
+		"start": "node dist/server.js",
+		"postinstall": "tsc",
 		"devserver": "nodemon src/server.ts",
-		"test": "jest --watch --config jest.config.js",
-		"build": "tsc -p ."
+		"test": "jest --watch --config jest.config.js"
 	},
 	"author": "Salim Dellali",
 	"license": "ISC",
@@ -24,5 +24,8 @@
 		"ts-jest": "^27.0.3",
 		"ts-node": "^10.0.0",
 		"typescript": "^4.3.4"
+	},
+	"engines": {
+		"node": "12.14.1"
 	}
 }
