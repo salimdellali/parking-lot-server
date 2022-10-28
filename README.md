@@ -1,10 +1,8 @@
 # Backend Challenge - Parking Lot Management
 
-![Heroku](https://pyheroku-badge.herokuapp.com/?app=parking-lot-server-heroku&style=flat)
-
 ## Quick start of the application usage
 
-- Live Demo [Here](https://parking-lot-server-heroku.herokuapp.com)
+- Live Demo [Here](https://parking-lot-server.onrender.com)
 - Read about [Using the server (Hitting the endpoints)](#using-the-server-hitting-the-endpoints)
 
 ## Table of contents
